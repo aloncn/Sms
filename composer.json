@@ -1,0 +1,19 @@
+{
+    "name": "farmer/sms",
+    "description": "短信发送",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "farmer chen",
+            "email": "10946081@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sms\\ChuanglanApi\\": "src/Sms/ChuanglanApi"
+        }
+    }
+}
