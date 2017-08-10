@@ -1,5 +1,5 @@
 <?php
-namespace Sms\ChuanglanSmsApi;
+namespace Farmer\Sms;
 
 /* *
  * 类名：ChuanglanSmsApi
@@ -13,7 +13,7 @@ namespace Sms\ChuanglanSmsApi;
  */
 
 require_once("chuanglan_config.php");
-class ChuanglanSmsApi {
+class Chuanglan{
 
 	/**
 	 * 发送短信
