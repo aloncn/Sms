@@ -13,7 +13,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Farmer\\Sms\\": "src/farmer/sms"
+            "Farmer\\Sms\\": "src/Farmer/Sms"
         }
     }
 }
