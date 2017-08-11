@@ -10,10 +10,10 @@ class Chuanglan{
 
 	var $api_account;  
     var $api_password;  
-    var $api_send_url = 'http://vsms.253.com/msg/send/json';  //送短信接口URL
-    var $API_VARIABLE_URL = 'http://vsms.253.com/msg/variable/json'; //变量短信接口URL
-    var $api_balance_query_url = 'http://vsms.253.com/msg/balance/json'; //短信余额查询接口URL
-    function __construct($api_account,$api_password,$api_send_url,$API_VARIABLE_URL,$api_balance_query_url){  
+    var $api_send_url ;  //送短信接口URL
+    var $API_VARIABLE_URL; //变量短信接口URL
+    var $api_balance_query_url; //短信余额查询接口URL
+    function __construct($api_account,$api_password,$api_send_url = 'http://vsms.253.com/msg/send/json',$API_VARIABLE_URL = 'http://vsms.253.com/msg/variable/json',$api_balance_query_url = 'http://vsms.253.com/msg/balance/json'){  
         $this->api_account = $api_account;  
         $this->api_password = $api_password;  
         $this->api_send_url = $api_send_url;  
