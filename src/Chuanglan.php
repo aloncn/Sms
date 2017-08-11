@@ -5,16 +5,21 @@ namespace Farmer\Sms;
  * 类名：ChuanglanSmsApi
  * 功能：创蓝接口请求类
  * 详细：构造创蓝短信接口请求，获取远程HTTP数据
- * 版本：1.3
- * 日期：2017-04-12
- * 说明：
- * 以下代码只是为了方便客户测试而提供的样例代码，客户可以根据自己网站的需要，按照技术文档自行编写,并非一定要使用该代码。
- * 该代码仅供学习和研究创蓝接口使用，只是提供一个参考。
  */
-
-require_once("chuanglan_config.php");
 class Chuanglan{
 
+	var $api_account;  
+    var $api_password;  
+    var $api_send_url = 'http://vsms.253.com/msg/send/json';  //送短信接口URL
+    var $API_VARIABLE_URL = 'http://vsms.253.com/msg/variable/json'; //变量短信接口URL
+    var $api_balance_query_url = 'http://vsms.253.com/msg/balance/json'; //短信余额查询接口URL
+    function __construct($api_account,$api_password,$api_send_url,$API_VARIABLE_URL,$api_balance_query_url){  
+        $this->api_account = $api_account;  
+        $this->api_password = $api_password;  
+        $this->api_send_url = $api_send_url;  
+        $this->API_VARIABLE_URL = $API_VARIABLE_URL;  
+        $this->api_balance_query_url = $api_balance_query_url;
+     }
 	/**
 	 * 发送短信
 	 *
@@ -23,18 +28,16 @@ class Chuanglan{
 	 * @param string $needstatus 	是否需要状态报告
 	 */
 	public function sendSMS( $mobile, $msg, $needstatus = 'true') {
-		global $chuanglan_config;
-		
 		//创蓝接口参数
 		$postArr = array (
-			'account'  =>  $chuanglan_config['api_account'],
-			'password' => $chuanglan_config['api_password'],
+			'account'  =>  $this->api_account,
+			'password' => $this->api_password,
 			'msg' => urlencode($msg),
 			'phone' => $mobile,
 			'report' => $needstatus
         );
 		
-		$result = $this->curlPost( $chuanglan_config['api_send_url'] , $postArr);
+		$result = $this->curlPost( $this->api_send_url , $postArr);
 		return $result;
 	}
 	
@@ -49,14 +52,14 @@ class Chuanglan{
 		
 		//创蓝接口参数
 		$postArr = array (
-			'account' => $chuanglan_config['api_account'],
-			'password' =>$chuanglan_config['api_password'],
+			'account' => $this->api_account,
+			'password' =>$this->api_password,
 			'msg' => $msg,
 			'params' => $params,
 			'report' => 'true'
         );
 		
-		$result = $this->curlPost( $chuanglan_config['API_VARIABLE_URL'], $postArr);
+		$result = $this->curlPost( $this->API_VARIABLE_URL, $postArr);
 		return $result;
 	}
 	
@@ -67,14 +70,13 @@ class Chuanglan{
 	 *  查询地址
 	 */
 	public function queryBalance() {
-		global $chuanglan_config;
-		
+
 		//查询参数
 		$postArr = array ( 
-		    'account' => $chuanglan_config['api_account'],
-		    'password' => $chuanglan_config['api_password'],
+		    'account' => $this->api_account,
+			'password' =>$this->api_password,
 		);
-		$result = $this->curlPost($chuanglan_config['api_balance_query_url'], $postArr);
+		$result = $this->curlPost($this->api_balance_query_url, $postArr);
 		return $result;
 	}
 
